@@ -50,7 +50,7 @@ DO WHILE .T.
 ENDDO
 返回我的表白墙模块
 -----------------------------------------
-PROCEDURE 排序
+PROCEDURE 排序模块
 点击浏览
 默认发布时间排序
 DO WHILE .T.
