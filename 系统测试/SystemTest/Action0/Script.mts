@@ -1,0 +1,11 @@
+﻿RunAction "登录", oneIteration
+RunAction "表白墙基本操作", oneIteration
+RunAction "发布表白墙", oneIteration
+RunAction "发布反馈", oneIteration
+RunAction "查看十大表白", oneIteration
+RunAction "个人中心操作", oneIteration
+RunAction "进入管理员界面", oneIteration
+RunAction "用户管理", oneIteration
+RunAction "表白墙管理", oneIteration
+RunAction "反馈管理", oneIteration
+RunAction "退出", oneIteration
