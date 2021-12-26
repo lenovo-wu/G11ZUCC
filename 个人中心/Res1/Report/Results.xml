@@ -1,0 +1,476 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="中国标准时间">
+<General productName="HP Unified Functional Testing" productVer="11.50" os="" host="DESKTOP-2RSL5HK"><DocLocation><![CDATA[C:\Users\13250\Desktop\个人中心]]></DocLocation></General>
+<Doc rID="T1"   productName= "HP Unified Functional Testing"  >
+<DName><![CDATA[个人中心]]></DName>
+<Res><![CDATA[Res1]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xls]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<DIter rID="T3" iterID="1" >
+<Action rID="T4">
+<AName><![CDATA[Action1]]></AName>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA[Google Chrome]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[2021/12/26 - 16:20:41]]></Time>
+<TimeTick>1640506841</TimeTick>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1633, 17]]></Details>
+<Time><![CDATA[2021/12/26 - 16:20:41]]></Time>
+<TimeTick>1640506841</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="10" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1633, 17]]></Details>
+<Time><![CDATA[2021/12/26 - 16:20:43]]></Time>
+<TimeTick>1640506843</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="12" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1623, 84]]></Details>
+<Time><![CDATA[2021/12/26 - 16:20:44]]></Time>
+<TimeTick>1640506844</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="14" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1623, 84]]></Details>
+<Time><![CDATA[2021/12/26 - 16:20:45]]></Time>
+<TimeTick>1640506845</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="16" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[345, 243]]></Details>
+<Time><![CDATA[2021/12/26 - 16:20:47]]></Time>
+<TimeTick>1640506847</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="18" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[448, 245]]></Details>
+<Time><![CDATA[2021/12/26 - 16:20:48]]></Time>
+<TimeTick>1640506848</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="20" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[448, 245]]></Details>
+<Time><![CDATA[2021/12/26 - 16:20:49]]></Time>
+<TimeTick>1640506849</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="22" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[457, 317]]></Details>
+<Time><![CDATA[2021/12/26 - 16:20:50]]></Time>
+<TimeTick>1640506850</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="24" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[457, 317]]></Details>
+<Time><![CDATA[2021/12/26 - 16:20:52]]></Time>
+<TimeTick>1640506852</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="26" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T15">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["123456789"]]></Details>
+<Time><![CDATA[2021/12/26 - 16:20:53]]></Time>
+<TimeTick>1640506853</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="28" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[448, 381]]></Details>
+<Time><![CDATA[2021/12/26 - 16:20:55]]></Time>
+<TimeTick>1640506855</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="30" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[461, 384]]></Details>
+<Time><![CDATA[2021/12/26 - 16:20:56]]></Time>
+<TimeTick>1640506856</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="32" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1184, 73]]></Details>
+<Time><![CDATA[2021/12/26 - 16:20:57]]></Time>
+<TimeTick>1640506857</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="34" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1184, 73]]></Details>
+<Time><![CDATA[2021/12/26 - 16:20:58]]></Time>
+<TimeTick>1640506858</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="36" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T20">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[575, 251]]></Details>
+<Time><![CDATA[2021/12/26 - 16:21:00]]></Time>
+<TimeTick>1640506860</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="38" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[575, 251]]></Details>
+<Time><![CDATA[2021/12/26 - 16:21:01]]></Time>
+<TimeTick>1640506861</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="40" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T22">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[556, 321]]></Details>
+<Time><![CDATA[2021/12/26 - 16:21:03]]></Time>
+<TimeTick>1640506863</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="42" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[556, 321]]></Details>
+<Time><![CDATA[2021/12/26 - 16:21:04]]></Time>
+<TimeTick>1640506864</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="44" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T24">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[520, 308]]></Details>
+<Time><![CDATA[2021/12/26 - 16:21:05]]></Time>
+<TimeTick>1640506865</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="46" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T25">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[512, 310]]></Details>
+<Time><![CDATA[2021/12/26 - 16:21:06]]></Time>
+<TimeTick>1640506866</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="48" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T26">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["1&lt__MicShiftDwn&gt&lt__MicShiftUp&gt"]]></Details>
+<Time><![CDATA[2021/12/26 - 16:21:07]]></Time>
+<TimeTick>1640506867</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="50" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T27">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicBack&gt"]]></Details>
+<Time><![CDATA[2021/12/26 - 16:21:09]]></Time>
+<TimeTick>1640506869</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="52" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T28">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicBack&gt"]]></Details>
+<Time><![CDATA[2021/12/26 - 16:21:10]]></Time>
+<TimeTick>1640506870</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="54" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T29">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicBack&gt"]]></Details>
+<Time><![CDATA[2021/12/26 - 16:21:11]]></Time>
+<TimeTick>1640506871</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="56" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T30">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicBack&gt"]]></Details>
+<Time><![CDATA[2021/12/26 - 16:21:12]]></Time>
+<TimeTick>1640506872</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="58" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T31">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicBack&gt"]]></Details>
+<Time><![CDATA[2021/12/26 - 16:21:13]]></Time>
+<TimeTick>1640506873</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="60" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T32">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicBack&gt"]]></Details>
+<Time><![CDATA[2021/12/26 - 16:21:14]]></Time>
+<TimeTick>1640506874</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="62" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T33">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicBack&gt"]]></Details>
+<Time><![CDATA[2021/12/26 - 16:21:15]]></Time>
+<TimeTick>1640506875</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="64" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T34">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicBack&gt"]]></Details>
+<Time><![CDATA[2021/12/26 - 16:21:17]]></Time>
+<TimeTick>1640506877</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="66" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T35">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["apple123"]]></Details>
+<Time><![CDATA[2021/12/26 - 16:21:18]]></Time>
+<TimeTick>1640506878</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="68" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T36">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[462, 388]]></Details>
+<Time><![CDATA[2021/12/26 - 16:21:20]]></Time>
+<TimeTick>1640506880</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="70" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T37">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[462, 388]]></Details>
+<Time><![CDATA[2021/12/26 - 16:21:21]]></Time>
+<TimeTick>1640506881</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="72" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T38">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1179, 72]]></Details>
+<Time><![CDATA[2021/12/26 - 16:21:22]]></Time>
+<TimeTick>1640506882</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="74" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T39">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1179, 72]]></Details>
+<Time><![CDATA[2021/12/26 - 16:21:23]]></Time>
+<TimeTick>1640506883</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="76" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="9" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2021/12/26 - 16:20:41" eTime="2021/12/26 - 16:21:24" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="7" >
+<Disp><![CDATA[Action1 概要]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="6" >
+<Disp><![CDATA[个人中心 迭代 1 (行 1)]]></Disp>
+</NodeArgs>
+</DIter>
+<Summary sTime="2021/12/26 - 16:20:40" eTime="2021/12/26 - 16:21:24" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" >
+<Disp><![CDATA[测试 个人中心 概要]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>
