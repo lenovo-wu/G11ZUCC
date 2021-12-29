@@ -1,0 +1,2022 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="中国标准时间">
+<General productName="HP Unified Functional Testing" productVer="11.50" os="" host="DESKTOP-2RSL5HK"><DocLocation><![CDATA[C:\Users\13250\Documents\GitHub\G11ZUCC\系统测试\SystemTest]]></DocLocation></General>
+<Doc rID="T1"   productName= "HP Unified Functional Testing"  >
+<DName><![CDATA[SystemTest]]></DName>
+<Res><![CDATA[Res6]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xls]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<DIter rID="T3" iterID="1" >
+<Action rID="T4">
+<AName><![CDATA[登录]]></AName>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA[Google Chrome]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:23]]></Time>
+<TimeTick>1640748623</TimeTick>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1591, 15]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:23]]></Time>
+<TimeTick>1640748623</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="10" Source="登录" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1591, 15]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:24]]></Time>
+<TimeTick>1640748624</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="12" Source="登录" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.DblClick]]></Obj>
+<Details plainTxt="False" ><![CDATA[694, 198]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:26]]></Time>
+<TimeTick>1640748626</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="14" Source="登录" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.DblClick]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["31901211"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:27]]></Time>
+<TimeTick>1640748627</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="16" Source="登录" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[706, 271]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:29]]></Time>
+<TimeTick>1640748629</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="18" Source="登录" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[706, 271]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:30]]></Time>
+<TimeTick>1640748630</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="20" Source="登录" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["123456"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:32]]></Time>
+<TimeTick>1640748632</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="22" Source="登录" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[683, 432]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:34]]></Time>
+<TimeTick>1640748634</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="24" Source="登录" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[683, 432]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:35]]></Time>
+<TimeTick>1640748635</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="26" Source="登录" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="9" Source="登录" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2021/12/29 - 11:30:23" eTime="2021/12/29 - 11:30:37" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="7" >
+<Disp><![CDATA[登录 概要]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T15">
+<AName><![CDATA[表白墙基本操作]]></AName>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA[Google Chrome]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:37]]></Time>
+<TimeTick>1640748637</TimeTick>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[955, 313]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:37]]></Time>
+<TimeTick>1640748637</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="31" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[955, 313]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:38]]></Time>
+<TimeTick>1640748638</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="33" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1029, 856]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:39]]></Time>
+<TimeTick>1640748639</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="35" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T20">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1029, 856]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:41]]></Time>
+<TimeTick>1640748641</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="37" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1041, 862]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:42]]></Time>
+<TimeTick>1640748642</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="39" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T22">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1041, 862]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:43]]></Time>
+<TimeTick>1640748643</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="41" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1041, 862]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:45]]></Time>
+<TimeTick>1640748645</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="43" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T24">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[957, 250]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:46]]></Time>
+<TimeTick>1640748646</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="45" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T25">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[957, 250]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:47]]></Time>
+<TimeTick>1640748647</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="47" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T26">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1079, 242]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:49]]></Time>
+<TimeTick>1640748649</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="49" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T27">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1079, 242]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:50]]></Time>
+<TimeTick>1640748650</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="51" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T28">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[683, 851]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:52]]></Time>
+<TimeTick>1640748652</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="53" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T29">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1490, 672]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:53]]></Time>
+<TimeTick>1640748653</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="55" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T30">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1490, 672]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:54]]></Time>
+<TimeTick>1640748654</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="57" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T31">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1160, 527]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:55]]></Time>
+<TimeTick>1640748655</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="59" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T32">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1160, 527]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:56]]></Time>
+<TimeTick>1640748656</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="61" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T33">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1494, 724]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:58]]></Time>
+<TimeTick>1640748658</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="63" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T34">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1494, 724]]></Details>
+<Time><![CDATA[2021/12/29 - 11:30:59]]></Time>
+<TimeTick>1640748659</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="65" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T35">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1495, 771]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:01]]></Time>
+<TimeTick>1640748661</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="67" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T36">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1495, 771]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:02]]></Time>
+<TimeTick>1640748662</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="69" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T37">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[633, 566]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:03]]></Time>
+<TimeTick>1640748663</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="71" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T38">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[636, 636]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:04]]></Time>
+<TimeTick>1640748664</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="73" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T39">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["woainiwlx"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:05]]></Time>
+<TimeTick>1640748665</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="75" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T40">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[600, 757]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:07]]></Time>
+<TimeTick>1640748667</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="77" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T41">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[600, 757]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:08]]></Time>
+<TimeTick>1640748668</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="79" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T42">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1184, 74]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:10]]></Time>
+<TimeTick>1640748670</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="81" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T43">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1184, 74]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:11]]></Time>
+<TimeTick>1640748671</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="83" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T44">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[711, 753]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:13]]></Time>
+<TimeTick>1640748673</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="85" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T45">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1492, 773]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:14]]></Time>
+<TimeTick>1640748674</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="87" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T46">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1492, 773]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:15]]></Time>
+<TimeTick>1640748675</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="89" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T47">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[698, 750]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:16]]></Time>
+<TimeTick>1640748676</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="91" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T48">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1494, 822]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:18]]></Time>
+<TimeTick>1640748678</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="93" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T49">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1484, 824]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:19]]></Time>
+<TimeTick>1640748679</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="95" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T50">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1163, 525]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:20]]></Time>
+<TimeTick>1640748680</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="97" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T51">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1163, 525]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:21]]></Time>
+<TimeTick>1640748681</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="99" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T52">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1493, 870]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:22]]></Time>
+<TimeTick>1640748682</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="101" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T53">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1496, 871]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:23]]></Time>
+<TimeTick>1640748683</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="103" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="30" Source="表白墙基本操作" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2021/12/29 - 11:30:37" eTime="2021/12/29 - 11:31:24" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="28" >
+<Disp><![CDATA[表白墙基本操作 概要]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T54">
+<AName><![CDATA[发布表白墙]]></AName>
+<Step rID="T55">
+<Obj plainTxt="False" ><![CDATA[Google Chrome]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:25]]></Time>
+<TimeTick>1640748685</TimeTick>
+<Step rID="T56">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[765, 11]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:25]]></Time>
+<TimeTick>1640748685</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="108" Source="发布表白墙" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T57">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[765, 11]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:26]]></Time>
+<TimeTick>1640748686</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="110" Source="发布表白墙" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T58">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[759, 354]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:27]]></Time>
+<TimeTick>1640748687</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="112" Source="发布表白墙" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T59">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[757, 353]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:28]]></Time>
+<TimeTick>1640748688</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="114" Source="发布表白墙" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T60">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["zuanzuan"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:29]]></Time>
+<TimeTick>1640748689</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="116" Source="发布表白墙" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T61">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[709, 425]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:31]]></Time>
+<TimeTick>1640748691</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="118" Source="发布表白墙" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T62">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[709, 425]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:32]]></Time>
+<TimeTick>1640748692</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="120" Source="发布表白墙" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T63">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["iloveyou"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:34]]></Time>
+<TimeTick>1640748694</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="122" Source="发布表白墙" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T64">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[698, 563]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:36]]></Time>
+<TimeTick>1640748696</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="124" Source="发布表白墙" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T65">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[698, 563]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:37]]></Time>
+<TimeTick>1640748697</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="126" Source="发布表白墙" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T66">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["woaini xiaozuanzuan mua"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:39]]></Time>
+<TimeTick>1640748699</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="128" Source="发布表白墙" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T67">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[698, 563]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:41]]></Time>
+<TimeTick>1640748701</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="130" Source="发布表白墙" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T68">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[636, 695]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:42]]></Time>
+<TimeTick>1640748702</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="132" Source="发布表白墙" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T69">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[636, 695]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:44]]></Time>
+<TimeTick>1640748704</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="134" Source="发布表白墙" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T70">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1176, 71]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:45]]></Time>
+<TimeTick>1640748705</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="136" Source="发布表白墙" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T71">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1176, 71]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:46]]></Time>
+<TimeTick>1640748706</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="138" Source="发布表白墙" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="107" Source="发布表白墙" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2021/12/29 - 11:31:24" eTime="2021/12/29 - 11:31:48" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="105" >
+<Disp><![CDATA[发布表白墙 概要]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T72">
+<AName><![CDATA[发布反馈]]></AName>
+<Step rID="T73">
+<Obj plainTxt="False" ><![CDATA[Google Chrome]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:48]]></Time>
+<TimeTick>1640748708</TimeTick>
+<Step rID="T74">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[896, 16]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:48]]></Time>
+<TimeTick>1640748708</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="143" Source="发布反馈" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T75">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[896, 16]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:49]]></Time>
+<TimeTick>1640748709</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="145" Source="发布反馈" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T76">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[705, 340]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:51]]></Time>
+<TimeTick>1640748711</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="147" Source="发布反馈" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T77">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[705, 340]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:52]]></Time>
+<TimeTick>1640748712</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="149" Source="发布反馈" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T78">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicBack&gt"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:53]]></Time>
+<TimeTick>1640748713</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="151" Source="发布反馈" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T79">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicBack&gt"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:54]]></Time>
+<TimeTick>1640748714</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="153" Source="发布反馈" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T80">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicBack&gt"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:55]]></Time>
+<TimeTick>1640748715</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="155" Source="发布反馈" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T81">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["qifuren"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:56]]></Time>
+<TimeTick>1640748716</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="157" Source="发布反馈" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T82">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[705, 340]]></Details>
+<Time><![CDATA[2021/12/29 - 11:31:58]]></Time>
+<TimeTick>1640748718</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="159" Source="发布反馈" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T83">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[675, 443]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:00]]></Time>
+<TimeTick>1640748720</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="161" Source="发布反馈" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T84">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[675, 443]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:01]]></Time>
+<TimeTick>1640748721</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="163" Source="发布反馈" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T85">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["xiaozuanzuan Ta qifu wo"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:03]]></Time>
+<TimeTick>1640748723</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="165" Source="发布反馈" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T86">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[675, 443]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:05]]></Time>
+<TimeTick>1640748725</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="167" Source="发布反馈" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T87">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[635, 618]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:06]]></Time>
+<TimeTick>1640748726</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="169" Source="发布反馈" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T88">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[635, 618]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:08]]></Time>
+<TimeTick>1640748728</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="171" Source="发布反馈" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T89">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1181, 83]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:09]]></Time>
+<TimeTick>1640748729</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="173" Source="发布反馈" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T90">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1181, 83]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:10]]></Time>
+<TimeTick>1640748730</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="175" Source="发布反馈" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="142" Source="发布反馈" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2021/12/29 - 11:31:48" eTime="2021/12/29 - 11:32:12" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="140" >
+<Disp><![CDATA[发布反馈 概要]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T91">
+<AName><![CDATA[查看十大表白]]></AName>
+<Step rID="T92">
+<Obj plainTxt="False" ><![CDATA[Google Chrome]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:12]]></Time>
+<TimeTick>1640748732</TimeTick>
+<Step rID="T93">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1017, 11]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:12]]></Time>
+<TimeTick>1640748732</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="180" Source="查看十大表白" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T94">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1017, 11]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:13]]></Time>
+<TimeTick>1640748733</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="182" Source="查看十大表白" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T95">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1033, 866]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:15]]></Time>
+<TimeTick>1640748735</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="184" Source="查看十大表白" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T96">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1033, 866]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:16]]></Time>
+<TimeTick>1640748736</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="186" Source="查看十大表白" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T97">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1033, 866]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:17]]></Time>
+<TimeTick>1640748737</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="188" Source="查看十大表白" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T98">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[765, 859]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:19]]></Time>
+<TimeTick>1640748739</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="190" Source="查看十大表白" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T99">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[712, 865]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:20]]></Time>
+<TimeTick>1640748740</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="192" Source="查看十大表白" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T100">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[675, 868]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:21]]></Time>
+<TimeTick>1640748741</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="194" Source="查看十大表白" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="179" Source="查看十大表白" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2021/12/29 - 11:32:12" eTime="2021/12/29 - 11:32:22" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="177" >
+<Disp><![CDATA[查看十大表白 概要]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T101">
+<AName><![CDATA[个人中心操作]]></AName>
+<Step rID="T102">
+<Obj plainTxt="False" ><![CDATA[Google Chrome]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:22]]></Time>
+<TimeTick>1640748742</TimeTick>
+<Step rID="T103">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1639, 14]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:22]]></Time>
+<TimeTick>1640748742</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="199" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T104">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1639, 14]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:23]]></Time>
+<TimeTick>1640748743</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="201" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T105">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1607, 79]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:25]]></Time>
+<TimeTick>1640748745</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="203" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T106">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1607, 79]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:26]]></Time>
+<TimeTick>1640748746</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="205" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T107">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[443, 251]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:28]]></Time>
+<TimeTick>1640748748</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="207" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T108">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[548, 389]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:29]]></Time>
+<TimeTick>1640748749</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="209" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T109">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[571, 244]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:30]]></Time>
+<TimeTick>1640748750</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="211" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T110">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[571, 244]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:31]]></Time>
+<TimeTick>1640748751</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="213" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T111">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[547, 315]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:32]]></Time>
+<TimeTick>1640748752</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="215" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T112">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[547, 315]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:33]]></Time>
+<TimeTick>1640748753</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="217" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T113">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["wohen"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:35]]></Time>
+<TimeTick>1640748755</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="219" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T114">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicBack&gt"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:37]]></Time>
+<TimeTick>1640748757</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="221" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T115">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicBack&gt"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:38]]></Time>
+<TimeTick>1640748758</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="223" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T116">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicBack&gt"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:39]]></Time>
+<TimeTick>1640748759</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="225" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T117">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicBack&gt"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:40]]></Time>
+<TimeTick>1640748760</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="227" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T118">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicBack&gt"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:41]]></Time>
+<TimeTick>1640748761</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="229" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T119">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicBack&gt"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:42]]></Time>
+<TimeTick>1640748762</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="231" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T120">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicBack&gt"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:43]]></Time>
+<TimeTick>1640748763</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="233" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T121">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["chao"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:44]]></Time>
+<TimeTick>1640748764</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="235" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T122">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[440, 391]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:46]]></Time>
+<TimeTick>1640748766</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="237" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T123">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[440, 391]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:47]]></Time>
+<TimeTick>1640748767</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="239" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T124">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1180, 77]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:49]]></Time>
+<TimeTick>1640748769</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="241" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T125">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1180, 77]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:50]]></Time>
+<TimeTick>1640748770</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="243" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T126">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[710, 246]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:52]]></Time>
+<TimeTick>1640748772</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="245" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T127">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[710, 246]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:53]]></Time>
+<TimeTick>1640748773</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="247" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T128">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1536, 414]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:54]]></Time>
+<TimeTick>1640748774</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="249" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T129">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1536, 414]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:55]]></Time>
+<TimeTick>1640748775</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="251" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T130">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1185, 83]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:57]]></Time>
+<TimeTick>1640748777</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="253" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T131">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1185, 83]]></Details>
+<Time><![CDATA[2021/12/29 - 11:32:58]]></Time>
+<TimeTick>1640748778</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="255" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T132">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[823, 252]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:00]]></Time>
+<TimeTick>1640748780</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="257" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T133">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[823, 252]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:01]]></Time>
+<TimeTick>1640748781</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="259" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T134">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1544, 416]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:02]]></Time>
+<TimeTick>1640748782</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="261" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T135">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1544, 416]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:03]]></Time>
+<TimeTick>1640748783</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="263" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T136">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1179, 75]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:05]]></Time>
+<TimeTick>1640748785</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="265" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T137">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1179, 75]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:06]]></Time>
+<TimeTick>1640748786</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="267" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T138">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[960, 247]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:08]]></Time>
+<TimeTick>1640748788</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="269" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T139">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[960, 247]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:09]]></Time>
+<TimeTick>1640748789</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="271" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T140">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1058, 249]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:10]]></Time>
+<TimeTick>1640748790</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="273" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T141">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1058, 249]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:11]]></Time>
+<TimeTick>1640748791</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="275" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T142">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1164, 245]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:13]]></Time>
+<TimeTick>1640748793</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="277" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T143">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1164, 245]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:14]]></Time>
+<TimeTick>1640748794</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="279" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T144">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1303, 243]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:16]]></Time>
+<TimeTick>1640748796</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="281" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T145">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1295, 241]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:17]]></Time>
+<TimeTick>1640748797</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="283" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="198" Source="个人中心操作" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2021/12/29 - 11:32:22" eTime="2021/12/29 - 11:33:18" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="196" >
+<Disp><![CDATA[个人中心操作 概要]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T146">
+<AName><![CDATA[进入管理员界面]]></AName>
+<Step rID="T147">
+<Obj plainTxt="False" ><![CDATA[Google Chrome]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:18]]></Time>
+<TimeTick>1640748798</TimeTick>
+<Step rID="T148">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[647, 11]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:18]]></Time>
+<TimeTick>1640748798</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="288" Source="进入管理员界面" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T149">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[647, 11]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:19]]></Time>
+<TimeTick>1640748799</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="290" Source="进入管理员界面" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T150">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1187, 79]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:21]]></Time>
+<TimeTick>1640748801</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="292" Source="进入管理员界面" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T151">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1187, 79]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:22]]></Time>
+<TimeTick>1640748802</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="294" Source="进入管理员界面" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="287" Source="进入管理员界面" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2021/12/29 - 11:33:18" eTime="2021/12/29 - 11:33:23" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="285" >
+<Disp><![CDATA[进入管理员界面 概要]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T152">
+<AName><![CDATA[用户管理]]></AName>
+<Step rID="T153">
+<Obj plainTxt="False" ><![CDATA[Google Chrome]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:23]]></Time>
+<TimeTick>1640748803</TimeTick>
+<Step rID="T154">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[105, 104]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:23]]></Time>
+<TimeTick>1640748803</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="299" Source="用户管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T155">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[105, 104]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:24]]></Time>
+<TimeTick>1640748804</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="301" Source="用户管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T156">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[409, 122]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:26]]></Time>
+<TimeTick>1640748806</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="303" Source="用户管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T157">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[409, 122]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:27]]></Time>
+<TimeTick>1640748807</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="305" Source="用户管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T158">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["1"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:29]]></Time>
+<TimeTick>1640748809</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="307" Source="用户管理" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T159">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[625, 123]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:31]]></Time>
+<TimeTick>1640748811</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="309" Source="用户管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T160">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[399, 123]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:32]]></Time>
+<TimeTick>1640748812</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="311" Source="用户管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T161">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["11"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:33]]></Time>
+<TimeTick>1640748813</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="313" Source="用户管理" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T162">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[646, 120]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:35]]></Time>
+<TimeTick>1640748815</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="315" Source="用户管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T163">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[639, 104]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:36]]></Time>
+<TimeTick>1640748816</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="317" Source="用户管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T164">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1766, 362]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:37]]></Time>
+<TimeTick>1640748817</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="319" Source="用户管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T165">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1812, 453]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:38]]></Time>
+<TimeTick>1640748818</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="321" Source="用户管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T166">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[402, 524]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:39]]></Time>
+<TimeTick>1640748819</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="323" Source="用户管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T167">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[402, 524]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:40]]></Time>
+<TimeTick>1640748820</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="325" Source="用户管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="298" Source="用户管理" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2021/12/29 - 11:33:23" eTime="2021/12/29 - 11:33:41" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="296" >
+<Disp><![CDATA[用户管理 概要]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T168">
+<AName><![CDATA[表白墙管理]]></AName>
+<Step rID="T169">
+<Obj plainTxt="False" ><![CDATA[Google Chrome]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:42]]></Time>
+<TimeTick>1640748822</TimeTick>
+<Step rID="T170">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[120, 168]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:42]]></Time>
+<TimeTick>1640748822</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="330" Source="表白墙管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T171">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[120, 168]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:43]]></Time>
+<TimeTick>1640748823</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="332" Source="表白墙管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T172">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[437, 111]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:44]]></Time>
+<TimeTick>1640748824</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="334" Source="表白墙管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T173">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[437, 111]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:45]]></Time>
+<TimeTick>1640748825</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="336" Source="表白墙管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T174">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["w"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:47]]></Time>
+<TimeTick>1640748827</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="338" Source="表白墙管理" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T175">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[645, 121]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:49]]></Time>
+<TimeTick>1640748829</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="340" Source="表白墙管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T176">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[645, 121]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:50]]></Time>
+<TimeTick>1640748830</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="342" Source="表白墙管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T177">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[378, 104]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:52]]></Time>
+<TimeTick>1640748832</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="344" Source="表白墙管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T178">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicBack&gt"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:53]]></Time>
+<TimeTick>1640748833</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="346" Source="表白墙管理" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T179">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["i"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:54]]></Time>
+<TimeTick>1640748834</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="348" Source="表白墙管理" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T180">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[644, 114]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:56]]></Time>
+<TimeTick>1640748836</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="350" Source="表白墙管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T181">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[644, 114]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:57]]></Time>
+<TimeTick>1640748837</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="352" Source="表白墙管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T182">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1804, 344]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:58]]></Time>
+<TimeTick>1640748838</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="354" Source="表白墙管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T183">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1804, 344]]></Details>
+<Time><![CDATA[2021/12/29 - 11:33:59]]></Time>
+<TimeTick>1640748839</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="356" Source="表白墙管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T184">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1804, 344]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:01]]></Time>
+<TimeTick>1640748841</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="358" Source="表白墙管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T185">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1836, 439]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:03]]></Time>
+<TimeTick>1640748843</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="360" Source="表白墙管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="329" Source="表白墙管理" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2021/12/29 - 11:33:42" eTime="2021/12/29 - 11:34:04" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="327" >
+<Disp><![CDATA[表白墙管理 概要]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T186">
+<AName><![CDATA[反馈管理]]></AName>
+<Step rID="T187">
+<Obj plainTxt="False" ><![CDATA[Google Chrome]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:04]]></Time>
+<TimeTick>1640748844</TimeTick>
+<Step rID="T188">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[113, 235]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:04]]></Time>
+<TimeTick>1640748844</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="365" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T189">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[105, 237]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:05]]></Time>
+<TimeTick>1640748845</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="367" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T190">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[384, 113]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:06]]></Time>
+<TimeTick>1640748846</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="369" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T191">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[384, 113]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:07]]></Time>
+<TimeTick>1640748847</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="371" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T192">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["qifuren"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:09]]></Time>
+<TimeTick>1640748849</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="373" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T193">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[384, 113]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:10]]></Time>
+<TimeTick>1640748850</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="375" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T194">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[634, 115]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:12]]></Time>
+<TimeTick>1640748852</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="377" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T195">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[634, 115]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:13]]></Time>
+<TimeTick>1640748853</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="379" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T196">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[565, 119]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:15]]></Time>
+<TimeTick>1640748855</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="381" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T197">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[520, 116]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:16]]></Time>
+<TimeTick>1640748856</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="383" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T198">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[622, 113]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:17]]></Time>
+<TimeTick>1640748857</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="385" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T199">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[469, 111]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:18]]></Time>
+<TimeTick>1640748858</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="387" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T200">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[469, 111]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:19]]></Time>
+<TimeTick>1640748859</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="389" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T201">
+<Obj plainTxt="False" ><![CDATA[Google Chrome.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["31901211"]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:21]]></Time>
+<TimeTick>1640748861</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="391" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T202">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[655, 105]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:23]]></Time>
+<TimeTick>1640748863</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="393" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T203">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[655, 105]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:24]]></Time>
+<TimeTick>1640748864</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="395" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T204">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1706, 267]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:25]]></Time>
+<TimeTick>1640748865</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="397" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T205">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1706, 267]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:26]]></Time>
+<TimeTick>1640748866</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="399" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T206">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1779, 269]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:28]]></Time>
+<TimeTick>1640748868</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="401" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T207">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1818, 369]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:29]]></Time>
+<TimeTick>1640748869</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="403" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="364" Source="反馈管理" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2021/12/29 - 11:34:04" eTime="2021/12/29 - 11:34:30" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="362" >
+<Disp><![CDATA[反馈管理 概要]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T208">
+<AName><![CDATA[退出]]></AName>
+<Step rID="T209">
+<Obj plainTxt="False" ><![CDATA[Google Chrome]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:30]]></Time>
+<TimeTick>1640748870</TimeTick>
+<Step rID="T210">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1800, 29]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:30]]></Time>
+<TimeTick>1640748870</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="408" Source="退出" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T211">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1786, 110]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:31]]></Time>
+<TimeTick>1640748871</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="410" Source="退出" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T212">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1641, 15]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:32]]></Time>
+<TimeTick>1640748872</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="412" Source="退出" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T213">
+<Obj plainTxt="False" ><![CDATA[Chrome Legacy Window.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[1617, 119]]></Details>
+<Time><![CDATA[2021/12/29 - 11:34:33]]></Time>
+<TimeTick>1640748873</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="414" Source="退出" SourceLine="-1" >
+<Disp><![CDATA[Chrome Legacy Window.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="407" Source="退出" SourceLine="-1" >
+<Disp><![CDATA[Google Chrome]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2021/12/29 - 11:34:30" eTime="2021/12/29 - 11:34:35" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="405" >
+<Disp><![CDATA[退出 概要]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="6" >
+<Disp><![CDATA[SystemTest 迭代 1 (行 1)]]></Disp>
+</NodeArgs>
+</DIter>
+<Summary sTime="2021/12/29 - 11:30:22" eTime="2021/12/29 - 11:34:35" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" >
+<Disp><![CDATA[测试 SystemTest 概要]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>
